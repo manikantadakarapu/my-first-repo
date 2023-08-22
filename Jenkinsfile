@@ -3,7 +3,7 @@ pipeline {
     
     triggers {
         // Trigger the pipeline when changes are pushed to the specified branch
-        pollSCM('*/5 * * * *')  // Poll the SCM every 5 minutes
+        pollSCM('* * * * *')  // Poll the SCM every 5 minutes
     }
     
     stages {
