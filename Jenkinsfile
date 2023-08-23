@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    triggers {
+        // Schedule the pipeline to run every day at 2:00 AM
+        cron('*/2 * * * *')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -25,8 +30,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                // Example: Deploy your application (could involve copying artifacts to a server)
-                // This could also be a manual step in a real-world scenario
+                // Example: Deploy your application
                 echo "this is my first deploy"
             }
         }
