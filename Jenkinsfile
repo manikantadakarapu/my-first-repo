@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        // Schedule the pipeline to run every minute
-        cron('* * * * *')
+        pollSCM('* * * * *') // Poll the SCM (source code repository) every minute
     }
 
     stages {
