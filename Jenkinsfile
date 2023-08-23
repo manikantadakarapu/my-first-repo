@@ -1,45 +1,45 @@
 pipeline {
     agent any
-    
-    triggers {
-        // Trigger the pipeline when changes are pushed to the specified branch
-        pollSCM('*/5 * * * *')  // Poll the SCM every 5 minutes
-    }
-    
+
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from the version control system (e.g., Git)
+                // Checkout your source code from your Git repository
                 checkout scm
             }
         }
         
         stage('Build') {
             steps {
-                // In this stage, you might perform any necessary build tasks (e.g., compiling, bundling)
-                sh 'echo "Build step: Implement build tasks here"'
+                // Example: Build your Java project
+                sh 'mvn clean package'
             }
         }
         
         stage('Test') {
             steps {
-                // Run tests for your application
-                sh 'echo "Test step: Run tests here"'
+                // Example: Run tests
+                sh 'mvn test'
             }
         }
         
         stage('Deploy') {
             steps {
-                // Deploy your application to a server or hosting platform
-                sh 'echo "Deploy step: Deploy to your server/hosting platform here"'
+                // Example: Deploy your application (could involve copying artifacts to a server)
+                // This could also be a manual step in a real-world scenario
+                sh 'scp target/your-app.jar user@your-server:/path/to/deployment'
             }
         }
     }
     
     post {
-        always {
-            // Cleanup or notification tasks that should always run
-            sh 'echo "Post-build: Cleanup or notification tasks here"'
+        success {
+            // Send notifications or perform actions upon successful deployment
+            echo 'Deployment successful!'
+        }
+        failure {
+            // Send notifications or perform actions upon deployment failure
+            echo 'Deployment failed!'
         }
     }
 }
