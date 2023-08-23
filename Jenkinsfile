@@ -12,14 +12,14 @@ pipeline {
         stage('Build') {
             steps {
                 // Example: Build your Java project
-                sh 'mvn clean package'
+                echo "hello this is my first build"
             }
         }
         
         stage('Test') {
             steps {
                 // Example: Run tests
-                sh 'mvn test'
+                echo "this is my first test"
             }
         }
         
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 // Example: Deploy your application (could involve copying artifacts to a server)
                 // This could also be a manual step in a real-world scenario
-                sh 'scp target/your-app.jar user@your-server:/path/to/deployment'
+                echo "this is my first deploy"
             }
         }
     }
