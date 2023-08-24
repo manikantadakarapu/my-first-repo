@@ -28,16 +28,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy the Docker image to a Docker host or Kubernetes cluster
-                sh 'docker run -d --name webapp-container -p 80:80 webapp-image'
+                sh 'docker run -d --name webapp-container2 -p 80:80 webapp-image'
             }
         }
     }
     
-    post {
-        always {
-            // Cleanup or notification tasks that should always run
-            sh 'docker stop webapp-container || true'  // Stop the container, ignore errors
-            sh 'docker rm webapp-container || true'    // Remove the container, ignore errors
-        }
-    }
-}
