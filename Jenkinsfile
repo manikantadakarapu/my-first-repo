@@ -2,6 +2,7 @@ pipeline {
     agent any
     triggers {
         pollSCM('* * * * *') // Poll the SCM (source code repository) every minute
+    }
     stages {
         stage('Checkout') {
             steps {
